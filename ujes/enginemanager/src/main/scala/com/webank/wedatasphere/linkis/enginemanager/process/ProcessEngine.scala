@@ -64,7 +64,14 @@ trait ProcessEngine extends Engine with Logging {
   def getInitErrorMsg = initErrorMsg
 
   override def init(): Unit = {
-    process = processBuilder.start(DWCArgumentsParser.formatToArray(dwcArgumentsParser))
+    try {
+      process = processBuilder.start(DWCArgumentsParser.formatToArray(dwcArgumentsParser))
+    } catch {
+      case e: Throwable => {
+        error("XXXXXXXXXXXXXXXXXprint++++", e)
+      }
+    }
+    info("debug XXXXXXXXXXXXXXX")
     var exitCode: Option[Int] = None
     Future {
       val iterator = IOUtils.lineIterator(process.getInputStream, Configuration.BDP_ENCODING.getValue)

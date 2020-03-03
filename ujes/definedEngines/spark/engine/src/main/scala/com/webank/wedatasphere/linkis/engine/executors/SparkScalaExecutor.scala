@@ -71,15 +71,27 @@ class SparkScalaExecutor(val sparkConf: SparkConf) extends SparkExecutor{
   def start() = {
     if(sparkILoop == null) {
       synchronized {
-        if(sparkILoop == null) createSparkILoop
+        if(sparkILoop == null)
+          try {
+            createSparkILoop
+          } catch {
+            case e: Throwable => {
+              error("createLoop error", e)
+            }
+          }
       }
     }
     if(sparkILoop != null) {
       if (!sparkILoopInited) {
         sparkILoop synchronized {
           if (!sparkILoopInited) {
-            initSparkILoop //TODO When an exception is thrown, is there a shutdown here? I need to think about it again.（当抛出异常时，此处是否需要shutdown，需要再思考一下）
-
+            try {
+              initSparkILoop //TODO When an exception is thrown, is there a shutdown here? I need to think about it again.（当抛出异常时，此处是否需要shutdown，需要再思考一下）
+            } catch {
+              case e: Throwable => {
+                error("initLoop error", e)
+              }
+            }
             //Wait up to 30 seconds（最多等待30秒）
             //Utils.waitUntil(() => future.isCompleted, SPARK_LANGUAGE_REPL_INIT_TIME.getValue.toDuration)
             //          info(lineOutputStream.toString)

@@ -39,6 +39,7 @@ class HiveEngineExecutorFactory extends EngineExecutorFactory {
   private val HIVE_QUEUE_NAME:String = "mapreduce.job.queuename"
   private val BDP_QUEUE_NAME:String = "wds.linkis.yarnqueue"
   override def createExecutor(options: JMap[String, String]): EngineExecutor = {
+//    Thread.sleep(60*1000*60*30)
     val hiveConf:HiveConf = HiveUtils.getHiveConf
     hiveConf.setVar(HiveConf.ConfVars.HIVEJAR, HiveUtils.jarOfClass(classOf[Driver])
       .getOrElse(throw HiveSessionStartFailedException(40012 ,"cannot find hive-exec.jar, start session failed!")))

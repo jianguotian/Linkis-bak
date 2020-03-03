@@ -32,7 +32,8 @@ object LDAPUtils extends Logging {
   val baseDN = CommonVars("wds.linkis.ldap.proxy.baseDN", "").getValue
   def login(userID: String, password: String): Unit = {
     val env = new Hashtable[String, String]()
-    val bindDN = userID
+//    val bindDN =  userID
+    val bindDN = "uid=" + userID + ",ou=common,o=application,dc=chinatelecom,dc=cn"
     val bindPassword = password
     env.put(Context.SECURITY_AUTHENTICATION, "simple")
     env.put(Context.INITIAL_CONTEXT_FACTORY, "com.sun.jndi.ldap.LdapCtxFactory")

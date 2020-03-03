@@ -29,6 +29,12 @@
     <packaging>jar</packaging>
 
     <dependencies>
+        <!--&lt;!&ndash; https://mvnrepository.com/artifact/com.ning/async-http-client &ndash;&gt;-->
+        <!--<dependency>-->
+            <!--<groupId>com.ning</groupId>-->
+            <!--<artifactId>async-http-client</artifactId>-->
+            <!--<version>1.8.10</version>-->
+        <!--</dependency>-->
         <dependency>
             <groupId>com.webank.wedatasphere.linkis</groupId>
             <artifactId>linkis-common</artifactId>
@@ -65,19 +71,25 @@
 
         <dependency>
             <groupId>net.databinder.dispatch</groupId>
-            <artifactId>dispatch-core_${scala.binary.version}</artifactId>
+            <!--<artifactId>dispatch-core_${scala.binary.version}</artifactId>-->
+            <artifactId>dispatch-core_2.11</artifactId>
             <version>${dispatch.version}</version>
             <exclusions>
                 <exclusion>
                     <groupId>org.scala-lang</groupId>
                     <artifactId>scala-library</artifactId>
                 </exclusion>
+                <!--<exclusion>-->
+                    <!--<groupId>com.ning</groupId>-->
+                    <!--<artifactId>async-http-client</artifactId>-->
+                <!--</exclusion>-->
             </exclusions>
         </dependency>
 
         <dependency>
             <groupId>net.databinder.dispatch</groupId>
-            <artifactId>dispatch-json4s-jackson_${scala.binary.version}</artifactId>
+            <!--<artifactId>dispatch-json4s-jackson_${scala.binary.version}</artifactId>-->
+            <artifactId>dispatch-json4s-jackson_2.11</artifactId>
             <version>${dispatch.version}</version>
             <exclusions>
                 <exclusion>
