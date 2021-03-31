@@ -214,7 +214,7 @@
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
                 <!--<version>14.0</version>-->
-                <version>27.0-jre</version>
+                <version>29.0-jre</version>
             </dependency>
             <dependency>
                 <groupId>org.slf4j</groupId>
